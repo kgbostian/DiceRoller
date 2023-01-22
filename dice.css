@@ -1,5 +1,5 @@
 #info_div{
-    background-color: #00FF00;
+    /* background-color: #00FF00; */
 }
 
 .center_field {
@@ -9,7 +9,7 @@
     width: 100%;
 }
 canvas {
-    background-color: #00FF00;
+    /* background-color: #00FF00; */
 }
 
 .center_field * {
@@ -77,3 +77,4 @@ canvas {
     position: absolute;
     border: solid black 1px;
 }
+

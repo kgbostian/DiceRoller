@@ -170,7 +170,7 @@
         var materials = [];
         for (var i = 0; i < face_labels.length; ++i)
             materials.push(new THREE.MeshPhongMaterial($t.copyto(this.material_options,
-                        { map: create_text_texture(face_labels[i], this.label_color, this.dice_color),opacity: 0.5 })));
+                        { map: create_text_texture(face_labels[i], this.label_color, this.dice_color),opacity: 1 })));
         return materials;
     }
 
@@ -392,12 +392,13 @@
         this.world = new CANNON.World();
 
         this.renderer = window.WebGLRenderingContext
-            ? new THREE.WebGLRenderer({ antialias: true })
-            : new THREE.CanvasRenderer({ antialias: true });
+            ? new THREE.WebGLRenderer({ antialias: true, alpha: true })
+            : new THREE.CanvasRenderer({ antialias: true, alpha: true });
         container.appendChild(this.renderer.domElement);
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFShadowMap;
-        this.renderer.setClearColor(0xffffff, 1);
+        // this.renderer.setClearColor(0xffffff, 1);
+        this.renderer.setClearColor(0x000000, 0);
 
         this.reinit(container, dimentions);
 
@@ -485,11 +486,11 @@
         this.light.shadowMapHeight = 1024;
         this.scene.add(this.light);
 
-        if (this.desk) this.scene.remove(this.desk);
-        this.desk = new THREE.Mesh(new THREE.PlaneGeometry(this.w * 2, this.h * 2, 1, 1), 
-                new THREE.MeshPhongMaterial({ color: that.desk_color }));
-        this.desk.receiveShadow = that.use_shadows;
-        this.scene.add(this.desk);
+        // if (this.desk) this.scene.remove(this.desk);
+        // this.desk = new THREE.Mesh(new THREE.PlaneGeometry(this.w * 2, this.h * 2, 1, 1), 
+        //         new THREE.MeshPhongMaterial({ color: that.desk_color }));
+        // this.desk.receiveShadow = that.use_shadows;
+        // this.scene.add(this.desk);
 
         this.renderer.render(this.scene, this.camera);
     }
@@ -827,4 +828,5 @@
     }
 
 }).apply(teal.dice = teal.dice || {});
+
 
