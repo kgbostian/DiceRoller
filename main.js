@@ -137,23 +137,6 @@ function dice_initialize(container) {
     }
 
     function after_roll(notation, result) {
-        // if (!params.chromakey && !params.noresult) {
-        //     var res = result.join(' ');
-        //     if (notation.constant) {
-        //         if (notation.constant > 0) res += ' +' + notation.constant;
-        //         else res += ' -' + Math.abs(notation.constant);
-        //     }
-        //     if (result.length > 1)
-        //         res +=
-        //             ' = ' +
-        //             (result.reduce(function (s, a) {
-        //                 return s + a;
-        //             }) +
-        //                 notation.constant);
-        //     label.innerHTML = res;
-        //     info_div.style.display = 'inline-block';
-        // }
-        
         var res = result.join(' ');
         if (notation.constant) {
             if (notation.constant > 0) res += ' +' + notation.constant;
@@ -161,8 +144,12 @@ function dice_initialize(container) {
         }
         if (result.length > 1)
             res += ' = ' + (result.reduce(function (s, a) {return s + a;}) + notation.constant);
-        //fetch(`http://localhost:3000//post-twitch?content=${encodeURIComponent(res)}`);
-
+        
+        console.log(res);
+        fetch(`http://192.168.1.113:13455/?content=${encodeURIComponent(res)}`, {method: 'post'})//.then((response) => {
+        //   console.log("Result is: something")
+        //})
+            //post-twitch?content=${encodeURIComponent(res)}
         setTimeout(() => {
             var canvas = $t.id('canvas');
             canvas.classList.add('hidden');
